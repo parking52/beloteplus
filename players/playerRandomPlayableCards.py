@@ -18,13 +18,6 @@ class PlayerRandomPlayableCards(Hand):
         index = self.cards.index(chosen_card)
         return self.cards.pop(index)
 
-    def display_hand(self):
-        for card in self.cards:
-            print(card.value, card.color)
-
-    def empty_the_hand(self):
-        self.cards = []
-
     def find_playable_cards(self, state):
 
         if len(state) == 0:
@@ -58,15 +51,3 @@ class PlayerRandomPlayableCards(Hand):
                     return list_trump
             else:
                 return list_bigger_trump
-
-    def get_cards(self, deck):
-        self.empty_the_hand()
-        self.cards.append(deck.deck[(self.player_position-1)*3])
-        self.cards.append(deck.deck[(self.player_position-1)*3+1])
-        self.cards.append(deck.deck[(self.player_position-1)*3+2])
-        self.cards.append(deck.deck[(self.player_position-1)*2+12])
-        self.cards.append(deck.deck[(self.player_position-1)*2+13])
-        self.cards.append(deck.deck[(self.player_position-1)*3+20])
-        self.cards.append(deck.deck[(self.player_position-1)*3+21])
-        self.cards.append(deck.deck[(self.player_position-1)*3+22])
-

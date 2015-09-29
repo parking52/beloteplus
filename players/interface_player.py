@@ -6,7 +6,7 @@ class Hand(object):
         self.name = name
         self.player_position = player_position
 
-    def play_card(self, i):
+    def play_card(self, state):
         raise NotImplementedError
 
     def display_hand(self):
