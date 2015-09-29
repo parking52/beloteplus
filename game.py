@@ -69,7 +69,7 @@ class Game:
                     return 4
 
     def add_card_to_state(self, player):
-        self.state.append(player.play_card(random.randint(0, len(player.cards)-1)))
+        self.state.append(player.play_card(self.state))
         # self.state.append(player.play_card(0))
 
     def deal(self, player_1, player_2, player_3, player_4, deck):
@@ -98,7 +98,6 @@ class Game:
                     self.bonus_value_team_1 += 20
                 else:
                     self.bonus_value_team_2 += 20
-
 
 
     def display_loot(self):

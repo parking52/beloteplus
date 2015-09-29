@@ -5,7 +5,7 @@ import itertools
 class Deck():
 
     def __init__(self):
-        self.deck = [Card(c[0], c[1]) for c in itertools.product(range(7,14),['Heart', 'Diamond', 'Spade', 'Club'])]
+        self.deck = [Card(c[0], c[1]) for c in itertools.product(range(7, 15), ['Heart', 'Diamond', 'Spade', 'Club'])]
 
     def shuffle(self):
         random.shuffle(self.deck)

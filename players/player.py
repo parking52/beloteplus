@@ -1,22 +1,19 @@
 from card import Card
 from deck import Deck
+from players.interface_player import Hand
 
-class Hand():
+class Player_dummy():
 
     def __init__(self, name, player_position):
         self.cards = []
         self.name = name
         self.player_position = player_position
 
-    def play_card(self, i):
-        return self.cards.pop(i)
-
-    def display_hand(self):
-        for card in self.cards:
-            print(card.value, card.color)
-
     def empty_the_hand(self):
         self.cards = []
+
+    def play_card(self, i):
+        self.cards.pop(i)
 
     def get_cards(self, deck):
         self.empty_the_hand()
