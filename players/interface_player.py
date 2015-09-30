@@ -1,12 +1,17 @@
 
 class Hand(object):
 
-    def __init__(self, name, player_position):
+    def __init__(self, name, player_position, player_team):
         self.cards = []
         self.name = name
         self.player_position = player_position
+        # self.player_team = (((player_position % 2) + 1) % 2) + 1
+        self.player_team = player_team
 
     def play_card(self, state):
+        raise NotImplementedError
+
+    def contract_response(self, contract_history):
         raise NotImplementedError
 
     def display_hand(self):

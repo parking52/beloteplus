@@ -11,9 +11,13 @@ class Game:
         self.bonus_value_team_1 = 0
         self.loot_team_2 = []
         self.bonus_value_team_2 = 0
+        self.players_list = [player_1, player_2, player_3, player_4]
 
         self.deal(player_1, player_2, player_3, player_4, deck)
-        self.set_trump(deck, "Spade")
+
+        self.contract_value, self.trump, self.contracting_team = self.launch_auction()
+
+        self.set_trump(deck, self.trump)
         self.deal(player_1, player_2, player_3, player_4, deck)
         self.check_for_belote(player_1, player_2, player_3, player_4)
 
@@ -79,6 +83,26 @@ class Game:
         player_3.get_cards(deck)
         player_4.get_cards(deck)
 
+    def launch_auction(self):
+
+        contestants_list = self.players_list
+        contract_history = []
+
+        while len(contestants_list) > 0:
+            response = contestants_list[0].contract_response(contract_history)
+            if response == "dropout":
+                contestants_list.pop(0)
+            else:
+                contract_history.append(response)
+                contestants_list.append(contestants_list.pop(0))
+
+        print(contract_history)
+
+        # return the last/highest response
+        return contract_history[-1][0], contract_history[-1][1], (contract_history[-1][2])
+
+
+
     def set_trump(self, deck, trump_color):
 
         deck.set_trump(trump_color)
@@ -113,5 +137,21 @@ class Game:
         # for card in self.loot_team_2:
         #     print(card.value, card.color)
 
-        print("Value Team 1: " + str(order.compute_value(self.loot_team_1) + self.bonus_value_team_1))
-        print("Value Team 2: " + str(order.compute_value(self.loot_team_2) + self.bonus_value_team_2))
+        value_team_1 = (order.compute_value(self.loot_team_1) + self.bonus_value_team_1)
+        value_team_2 = (order.compute_value(self.loot_team_2) + self.bonus_value_team_2)
+
+        print("Value Team 1: " + str(value_team_1))
+        print("Value Team 2: " + str(value_team_2))
+
+        print("Contract was " + str(self.contract_value) + " for team " + str(self.contracting_team))
+        if self.contracting_team == 1:
+            if self.contract_value < value_team_1:
+                print("WIN TEAM 1")
+            else:
+                print("LOSE TEAM 1")
+        else:
+            if self.contract_value < value_team_2:
+                print("WIN TEAM 2")
+            else:
+                print("LOSE TEAM 2")
+

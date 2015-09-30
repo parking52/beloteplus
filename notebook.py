@@ -12,10 +12,10 @@ order = Order()
 # deck.display_deck()
 
 # Set players
-player_1 = PlayerRandomPlayableCards("player_1", 1)
-player_2 = PlayerRandomPlayableCards("player_2", 2)
-player_3 = PlayerRandomPlayableCards("player_3", 3)
-player_4 = PlayerDummy("player_4", 4)
+player_1 = PlayerRandomPlayableCards("player_1", 1, 1)
+player_2 = PlayerRandomPlayableCards("player_2", 2, 2)
+player_3 = PlayerRandomPlayableCards("player_3", 3, 1)
+player_4 = PlayerRandomPlayableCards("player_4", 4, 2)
 
 # Game start
 game = Game(player_1, player_2, player_3, player_4, deck)

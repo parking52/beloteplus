@@ -9,8 +9,8 @@ import random
 
 class PlayerRandomPlayableCards(Hand):
 
-    def __init__(self, name, player_position):
-        super().__init__(name, player_position)
+    def __init__(self, name, player_position, player_team):
+        super().__init__(name, player_position, player_team)
 
     def play_card(self, state):
         playable_cards = self.find_playable_cards(state)
@@ -51,3 +51,10 @@ class PlayerRandomPlayableCards(Hand):
                     return list_trump
             else:
                 return list_bigger_trump
+
+    def contract_response(self, contract_history):
+        if len(contract_history) == 0:
+            contract_offer = [80, "Spade", self.player_position]
+            return contract_offer
+        else:
+            return "dropout"
